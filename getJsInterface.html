@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TEST</title>
+  <title>display js</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,7 +16,6 @@
 </head>
 
 <body>
-<a href="https://www.github.com", >www.honor.com</a>
   <div class="info" id="info"></div>
   <script>
   var jsonObj = {};
@@ -28,7 +27,6 @@
         var details = properties.map(function(prop) {
         var propDetails = window[key][prop];
         if (typeof propDetails === 'function') {
-          // 获取函数签名
           return prop;
         } else {
           return prop;
@@ -39,8 +37,7 @@
   }
 }
 
-alert(JSON.stringify(jsonObj, null, 2)); // 将对象转换为字符串并格式化输出
-</script>
+alert(JSON.stringify(jsonObj, null, 2));
 
 </body>
 </html>
