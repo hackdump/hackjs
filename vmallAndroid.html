@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vmall Android</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .info {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="info" id="info"></div>
+  <button onclick="getDeviceSN()">调用 getDeviceSN</button><br><br>
+  <script type="text/javascript">
+        function safeCall(methodName, ...args) {
+            if (window.vmallAndroid && typeof vmallAndroid[methodName] === "function") {
+                try {
+                    let result = vmallAndroid[methodName](...args);
+                    if (result === null || result === undefined || result === "") {
+                        console.warn(methodName + " 返回值为空");
+                        return null;
+                    }
+                    return result;
+                } catch (e) {
+                    console.error("调用 " + methodName + " 出错：", e);
+                    return null;
+                }
+            } else {
+                console.warn("vmallAndroid 对象或方法 " + methodName + " 不存在");
+                return null;
+            }
+        }
+
+     
+        function getDeviceSN() {
+            let result = safeCall("getDeviceSN");
+            if (result) {
+                alert("SN信息: " + result);
+            }
+        }
+    </script>
+ </body>
+</html>
