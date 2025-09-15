@@ -21,9 +21,9 @@
   <button onclick="getLoctionLatAndLon()">调用 getLoctionLatAndLon</button><br><br>
   <script type="text/javascript">
 
-       function onLocationSuccess(latLonJson) {
+       function onLocationSuccess(str1, str2) {
             try {
-                alert("定位成功: " + latLonJson);
+                alert("定位成功: " + str1 + ", " + str2);
             } catch (e) {
                 console.error("解析定位数据失败：", e);
             }
