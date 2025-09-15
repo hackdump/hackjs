@@ -24,16 +24,16 @@
                 try {
                     let result = vmallAndroid[methodName](...args);
                     if (result === null || result === undefined || result === "") {
-                        console.warn(methodName + " 返回值为空");
+                        alert(methodName + " 返回值为空");
                         return null;
                     }
                     return result;
                 } catch (e) {
-                    console.error("调用 " + methodName + " 出错：", e);
+                    alert("调用 " + methodName + " 出错：");
                     return null;
                 }
             } else {
-                console.warn("vmallAndroid 对象或方法 " + methodName + " 不存在");
+                alert("vmallAndroid 对象或方法 " + methodName + " 不存在");
                 return null;
             }
         }
