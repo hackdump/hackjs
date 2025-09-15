@@ -18,7 +18,20 @@
 <body>
   <div class="info" id="info"></div>
   <button onclick="callGetSNAndModel()">调用 getSNAndModel</button><br><br>
-   <script type="text/javascript">
+  <button onclick="getLoctionLatAndLon()">调用 getLoctionLatAndLon</button><br><br>
+  <script type="text/javascript">
+
+       function onLocationSuccess(latLonJson) {
+            try {
+                alert("定位成功: " + latLonJson);
+            } catch (e) {
+                console.error("解析定位数据失败：", e);
+            }
+        }
+        // 定位失败回调
+        function onLocationFail(errorMsg) {
+            alert("定位失败：" + errorMsg);
+        }
         function safeCall(methodName, ...args) {
             if (window.vmallRobot && typeof vmallRobot[methodName] === "function") {
                 try {
@@ -44,6 +57,9 @@
             if (result) {
                 alert("SN 和 Model 信息: " + result);
             }
+        }
+        function getLoctionLatAndLon() {
+            let result = safeCall("getLoctionLatAndLon", "onLocationFail", "onLocationSuccess");
         }
     </script>
  </body>
