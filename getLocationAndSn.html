@@ -19,11 +19,31 @@
   <div class="info" id="info"></div>
   <button onclick="callGetSNAndModel()">调用 getSNAndModel</button><br><br>
    <script type="text/javascript">
+        function safeCall(methodName, ...args) {
+            if (window.vmallRobot && typeof vmallRobot[methodName] === "function") {
+                try {
+                    let result = vmallRobot[methodName](...args);
+                    if (result === null || result === undefined || result === "") {
+                        console.warn(methodName + " 返回值为空");
+                        return null;
+                    }
+                    return result;
+                } catch (e) {
+                    console.error("调用 " + methodName + " 出错：", e);
+                    return null;
+                }
+            } else {
+                console.warn("vmallRobot 对象或方法 " + methodName + " 不存在");
+                return null;
+            }
+        }
+
+     
         function callGetSNAndModel() {
-            // 调用 getSNAndModel，返回 JSON 字符串
-            //var result = Robot.getSNAndModel();
-            //alert("SN 和 Model 信息: " + result);
-          alert("SN 和 Model 信息: ");
+            let result = safeCall("getSNAndModel");
+            if (result) {
+                alert("SN 和 Model 信息: " + result);
+            }
         }
     </script>
  </body>
